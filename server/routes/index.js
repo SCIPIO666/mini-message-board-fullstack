@@ -9,6 +9,10 @@ router.get('/', function(req, res, next) {
  logger.fatal('testing fatal')
  logger.debug('testing debug')
  logger.info('good info,routine,testing info()')
+ logger.info(
+  { reqId: req.id, },
+  'logging tracer id'
+);
   res.render('index', { title: 'Express' });
 });
 

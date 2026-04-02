@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const requestIdMiddleware=require('./src/middleware/requestIdMiddleware')
 //loggers
 const morgan = require('morgan');
 const logger = require('./src/utils/logger'); // Our Pino logger
@@ -16,8 +17,13 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+
 app.set('view engine', 'jade');
 
+//add requestheader before morgan logging
+app.use(requestIdMiddleware.requestIdMiddleware);
+app.use(requestIdMiddleware.requestLoggerMiddleware)
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
