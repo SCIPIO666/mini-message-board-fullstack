@@ -1,0 +1,16 @@
+.env
+.env.local
+*.pem
+*.key
+.DS_Store          
+Thumbs.db         
+desktop.ini        
+node_modules/
+dist/
+build/
+npm-debug.log*
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
