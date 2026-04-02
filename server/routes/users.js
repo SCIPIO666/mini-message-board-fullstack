@@ -3,7 +3,7 @@ var router = express.Router();
 const debug = require('debug')('my-app:usersRoute');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  debug('accessing users')
+  logger.debug('accessing users')
   res.send('respond with a resource');
 });
 

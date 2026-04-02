@@ -2,7 +2,6 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-
 //loggers
 const morgan = require('morgan');
 const logger = require('./src/utils/logger'); // Our Pino logger
@@ -25,17 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-app.get('/', (req, res) => {
-  // 2. PINO handles the "Inside" (Business logic)
-  logger.info('User is accessing the home route');
-  
-  if (true) { 
-    logger.debug('Model data successfully fetched'); 
-  }
-
-  res.send('Hello World');
-});
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -55,7 +44,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(3000,'localhost', () => {
- logger.info('Server is running on port 3000');
+
 })
 
 module.exports = app;
